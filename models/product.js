@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {ObjectId} = mongoose.Schema; //Use to refer to the schema that we want
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -16,6 +17,26 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-        maxlength: 32
+        maxlength: 32,
+        trim: true
+    },
+    category: {
+        type: ObjectId,
+        ref: "Category",
+        required: true
+    },
+    stock: {
+        type: Number
+    },
+    sold: {
+        type: Number,
+        default: 0      //whenever we are adding a producdt, intially we are not selling anything
+    },
+    photo: {
+        data: Buffer,
+        contentType: String
     }
-})
+}, {timestamps: true}
+);
+
+module.exports = mongoose.model("Product", productSchema);
