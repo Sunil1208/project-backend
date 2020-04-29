@@ -9,6 +9,7 @@ const cors = require('cors');
 //My routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(cors());
 //My routes
 app.use('/api',authRoutes);
 app.use('/api',userRoutes);
+app.use('/api',categoryRoutes);
 
 
 app.listen(port,()=>{
